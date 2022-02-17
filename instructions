@@ -1,0 +1,19 @@
+Restore files from Shadow Copy
+
+Right click on the folder your trying to restore from shadow copy and chose ‘Previous versions’. Chose a date and click on open.
+
+Right click on any file or folder within the previous folder and chose ‘properties’. Under ‘General’ copy what reads in ‘location’ – .e.g.:
+
+\localhost\G$@GMT-2018.12.14-12.00.13\Old PC Files
+
+Open cmd.exe and type in: subst X: "\localhost\G$@GMT-2018.12.14-12.00.13\Old PC Files"
+
+Open powershell and use robocopy to copy content of X: e.g.:
+
+robocopy X: D:\Folder\ /MIR /COPY:DATSOU /ZB /R:1 /W:10 /TEE /log:
+
+Check that all files have been copied.
+
+When finished, in cmd, type
+
+subst X: /D
